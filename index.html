@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Table Row Hover testing</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            font-weight: 300;
+        }
+
+        table {
+            border-spacing: 0;
+        }
+
+        tr {
+            position: relative;
+        }
+
+        td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+
+        .co-edit {
+            background: rgba(200, 100, 200, 0.75);
+            position: absolute;
+            top: 0;
+            left: 0;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Activation Key</th>
+        <th>Enabled</th>
+        <th>Suite</th>
+        <th>Count</th>
+        <th>License Expiration</th>
+        <th>Maintenance Expiration</th>
+        <th>Creation Date</th>
+        <th>Options</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>1224-8835-2782-1631</td>
+        <td><i class="fa fa-check success"></i></td>
+        <td>Internal Nodelocked</td>
+        <td>10</td>
+        <td>2015-13-12</td>
+        <td>2015-13-12</td>
+        <td>2014-13-12</td>
+        <td>N/A</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>2782-1631-1224-8835</td>
+        <td><i class="fa fa-check success"></i></td>
+        <td>Internal Nodelocked</td>
+        <td>1</td>
+        <td>2015-13-12</td>
+        <td>2015-13-12</td>
+        <td>2014-13-12</td>
+        <td>options="nodes=4, links="15", customer="Raymond 2", enabled</td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>8835-2782-1631-7647</td>
+        <td><i class="fa fa-close warning"></i></td>
+        <td>15</td>
+        <td>Cube Node Floating</td>
+        <td>2015-13-12</td>
+        <td>2015-13-12</td>
+        <td>2014-13-12</td>
+        <td>N/A</td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>1224-8835-2782-1631</td>
+        <td><i class="fa fa-check success"></i></td>
+        <td>Internal Nodelocked</td>
+        <td>1</td>
+        <td>2015-13-12</td>
+        <td>2015-13-12</td>
+        <td>2014-13-12</td>
+        <td>options="nodes=2, links="8", options="nodes=2, links="8", options="nodes=2, links="8", options="nodes=2,
+            links="8", options="nodes=2, links="8", options="nodes=2, links="8"
+        </td>
+    </tr>
+    </tbody>
+</table>
+<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script>
+    var row = $('tbody tr');
+    var d = $('<div class="co-edit">Appended Div!!</div>');
+    var w = 0;
+
+    var setWidth = function (width, padding) {
+        return width - padding;
+    };
+
+    var setHeight = function (height, padding) {
+        return height - padding;
+    };
+
+    //d.width(0);
+    //d.height(0);
+    //    row.on('mouseenter', function (e) {
+    //        d.width($(this).width() - 20);
+    //        d.height($(this).height() - 20);
+    //        $(this).parent().append( d.offset( $(this).offset() ) );
+    //        //console.log( $(this).offset() );
+    //    }).mouseleave(function(e) {
+    //        //console.log($(this));
+    //        //console.log( $(this).parent() );
+    //        $(this).parent('tbody').find(d).remove();
+    //    });
+
+    row.on({
+        mouseenter: function () {
+            console.log($(this).width());
+            d.width(setWidth($(this).width(), 20));
+            d.height(setHeight($(this).height(), 20));
+            $(this).parent().append(d.offset($(this).offset()));
+        },
+        mouseleave: function () {
+            $(this).parent('tbody').remove(d);
+        }
+    });
+</script>
+</body>
+</html>
